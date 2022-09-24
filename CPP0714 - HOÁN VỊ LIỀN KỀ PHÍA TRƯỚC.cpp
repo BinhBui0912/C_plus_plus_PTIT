@@ -6,20 +6,34 @@
 //stoll: chuyen thanh kieu longlong
 //to_string(): chuyen so thanh string
 //stringstream ss(): tach tu theo dau cach
-#include<iostream>
-#include<cmath>
-#include<iomanip>
+
+#include<bits/stdc++.h>
 
 using namespace std;
+
+int n, i, a[10000];
+
+void sinh(){
+	int i = n - 1;
+	while( i >= 1 && a[i] < a[i+1]){
+		i--;
+	}
+	swap(a[i], a[i+1]);
+	reverse(a+i, a+n);
+}
 
 int main(){
 	int t;
 	cin >> t;
 	while(t--){
-		double a , b, c, d, z;
-		cin >> a >> b >> c >> d;
-		z = sqrt((a-c) * (a-c) + (b-d) * (b-d));
-		cout << fixed << setprecision(4) << z << endl;
+		cin >> n;
+		for(int i = 1; i <= n; i++){
+			cin >> a[i];
+		}
+		sinh();
+		for(int i = 1; i <= n; i++){
+			cout << a[i] << " ";
+		}
+		cout << endl;
 	}
-} 
-
+}

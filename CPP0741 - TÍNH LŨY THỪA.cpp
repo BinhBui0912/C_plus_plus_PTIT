@@ -7,28 +7,20 @@
 //to_string(): chuyen so thanh string
 //stringstream ss(): tach tu theo dau cach
 
-#include<iostream>
-#include<cmath>
-#include<iomanip>
+#include<bits/stdc++.h>
 
 using namespace std;
-int n;
-void Tong(){
-	int s = 0;
-	while(n>0){
-		s  = s + n%10;
-		n = n/10;
-	}
-	n = s;
-}
 
 int main(){
 	int t;
 	cin >> t;
 	while(t--){
-		cin >> n;
-		while(n>9) Tong();
-		cout << n << endl;
+		long long x, y, p;
+		cin >> x >> y >> p;
+		long long cnt = 1;
+		for(int i = 1; i <= y ; i++){
+			cnt  = cnt * x % p;
+		}
+		cout << cnt << endl;
 	}
-} 
-
+}
