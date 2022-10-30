@@ -1,0 +1,29 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+int check(long long n){
+	long long f1 = 1, f2 = 1;
+	long long fn;
+	if(n == 0 || n == 1) return 1;
+	for(int i = 3; i <= 93; i++)
+	{
+		fn = f1 + f2;
+		if(n == fn) return 1;
+		f1 = f2;
+		f2 = fn;
+	}
+	return 0;
+}
+
+int main(){
+	int t;
+	cin >> t;
+	while(t--)
+	{
+		long long n;
+		cin >> n;
+		if(check(n) == 1) cout << "YES" << endl;
+		else cout << "NO" << endl;
+	}
+}
