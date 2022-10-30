@@ -1,0 +1,58 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+int check(long long n){
+	int i = n%10;
+	int j = (n/10) % 10;
+	if(i == j) return 0;
+	else if(i > j)
+	{
+		while(n >= 10)
+		{
+			if(n%10 <= (n/10)%10) 
+			{
+				return 0;
+				break;
+			}
+			n /= 10;
+		}
+	}
+	else
+	{
+		while(n >= 10)
+		{
+			if(n%10 >= (n/10)%10)
+			{
+				return 0;
+				break;
+			}
+			n /= 10;
+		}	
+	}
+	return 1;	
+}
+
+int SNT(long long n){
+	if(n < 2) return 0;
+	for(int i = 2; i <= sqrt(n); i++)
+	{
+		if(n % i == 0) return 0;	
+	}		
+	return 1;
+}
+
+int main(){
+	int t; cin >> t;
+	while(t--)
+	{
+		long long n;
+		cin >> n;
+		int dem = 0;
+		for(int i = pow(10,n-1); i < pow(10,n); i++)
+		{
+			if(check(i) == 1 && SNT(i) == 1) dem++;		 
+		}
+		cout << dem << endl;
+	}
+}
