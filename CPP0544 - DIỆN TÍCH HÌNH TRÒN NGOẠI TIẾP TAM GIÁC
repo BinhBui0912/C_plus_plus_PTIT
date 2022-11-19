@@ -1,0 +1,45 @@
+#include<bits/stdc++.h>
+#define PI 3.141592653589793238
+
+using namespace std;
+
+struct ToaDo{
+	double x,y;
+	friend istream& operator >> (istream& in, ToaDo &a);
+};
+
+double distance(ToaDo a, ToaDo b){
+	return sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));
+}
+
+istream& operator >> (istream& in, ToaDo &a){
+	in >> a.x >> a.y;
+	return in;
+}
+
+int main(){
+	int t;
+	cin >> t;
+	while(t--){
+		ToaDo A,B,C;
+		cin >> A >> B >> C;
+		double AB, BC, AC;
+		AB = distance(A,B);
+		BC = distance(B,C);
+		AC = distance(A,C);
+		if(AB + BC > AC && BC + AC > AB && AC + AB > BC){
+			double S =  sqrt((AB+BC+AC) * (AB+BC-AC) * (BC+AC-AB) * (AB+AC-BC)) / 4;
+			double R = (AB * AC * BC) / (4 * S);
+			cout << fixed << setprecision(3) << PI * R * R << endl;
+		}
+		else cout << "INVALID" << endl;
+	}
+}
+
+
+
+
+
+
+
+
