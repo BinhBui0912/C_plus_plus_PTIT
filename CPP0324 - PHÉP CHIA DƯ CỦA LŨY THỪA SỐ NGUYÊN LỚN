@@ -1,0 +1,38 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+long long ChiaDu1(string n, long long m){  // chia du a%b
+	long long cnt = 0;
+	for(int i = 0; i < n.size(); i++){
+		cnt = cnt*10 + n[i] - '0';
+		cnt = cnt % m;
+	}
+	return cnt;
+}
+
+long long ChiaDu2(long long a, long long b, long long c){  // chia du (a^b)%c
+	long long res = 1;
+	while(b != 0){
+		if(b%2 == 1){
+			res = res * a;
+			res = res % c;
+		}
+		a = a*a;
+		a = a%c;
+		b = b/2;
+	}
+	return res;
+}
+
+int main(){
+	int t;
+	cin >> t;
+	while(t--){
+		string a;
+		long long b, m;
+		cin >> a >> b >> m;
+		long long tmp = ChiaDu1(a,m);
+		cout << ChiaDu2(tmp, b, m) << endl;
+	}
+}
