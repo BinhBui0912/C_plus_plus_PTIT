@@ -1,0 +1,41 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+void Hieu(string a, string b){
+	string s = "";
+	int cnt = 0;
+	long long A = a.size(), B = b.size();
+	if(A > B) b.insert(0, A-B, '0');
+	else if(A < B) a.insert(0, B-A, '0');
+	if(b > a) {
+		string tmp = a;
+		a = b;
+		b = tmp;
+	}
+	for(int i = a.size() -1 ; i >= 0; i--){
+		cnt = a[i]  - b[i]  - cnt ;
+		if(cnt < 0){
+			cnt = cnt + 10;
+			s.insert(0, 1, cnt +48);
+			cnt = 1;
+		}
+		else{
+			s.insert(0, 1, cnt+48);
+			cnt = 0;
+		}
+	}
+	cout  << s << endl;
+} 
+
+int main(){
+	int t;
+	cin >> t;
+	while(t--){
+		string a, b;
+		cin >> a >> b;
+		Hieu(a,b);
+	}
+}
+
+
