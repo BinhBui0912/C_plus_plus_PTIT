@@ -1,0 +1,39 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+int main(){
+	int t;
+	cin >> t;
+	while(t--){
+		string s1, s2;
+		cin >> s1 >> s2;
+		int dem1[256] = {0};
+		int dem2[256] = {0};
+		for(int i = 0; i < s2.length(); i++){
+			dem2[s2[i]]++;
+		}
+		int tmp = INT_MAX, left = 0, cnt = 0, res = -1;
+		for(int i = 0; i < s1.length(); i++){
+			dem1[s1[i]]++;
+			if(dem1[s1[i]] <= dem2[s1[i]]) cnt++;
+			if(cnt == s2.length()){
+				while(dem1[s1[left]] > dem2[s1[left]] || dem2[s1[left]] == 0){
+					if(dem1[s1[left]] > dem2[s1[left]]){
+						dem1[s1[left]]--;
+					}
+					left++;
+				}
+				if(tmp > i - left + 1){
+					tmp = i - left + 1;
+					res = left;
+				}
+			}
+		}
+		if(res == -1) cout << "-1";
+		else{
+			for(int i = res; i <= res + tmp - 1; i++) cout << s1[i];
+		}
+		cout << endl;
+	}
+} 
