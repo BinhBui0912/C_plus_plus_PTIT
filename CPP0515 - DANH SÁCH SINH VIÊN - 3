@@ -1,0 +1,72 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+struct SinhVien{
+	string msv;
+	string ten;
+	string lop;
+	string ns;
+	double gpa;
+	
+	bool operator < (const SinhVien other){
+		return gpa < other.gpa;
+	}
+};
+
+void ChuanHoa1(string &s){
+	if(s[1] == '/') s = "0" + s;
+	if(s[4] == '/') s.insert(3, "0");
+}
+
+void ChuanHoa2(string &s){
+	for(int i = 0; i < s.size(); i++){
+		s[i] = tolower(s[i]);
+	}
+	stringstream ss(s);
+	string tmp;
+	vector<string> v;
+	while(ss >> tmp){
+		v.push_back(tmp);
+	}
+	string cnt = "";
+	for(int i = 0; i < v.size(); i++){
+		v[i][0] = toupper(v[i][0]);
+		cnt += v[i] + " ";
+	}
+	s = cnt;
+}
+
+
+void nhap(SinhVien ds[], int N){
+	for(int i = 1; i <= N; i++){
+		cin.ignore();
+		ds[i].msv = "B20DCCN0";
+		if(i < 10) ds[i].msv += "0" + to_string(i);
+		else ds[i].msv += to_string(i);
+		getline(cin, ds[i].ten);
+		cin >> ds[i].lop >> ds[i].ns >> ds[i].gpa;
+		ChuanHoa1(ds[i].ns);
+		ChuanHoa2(ds[i].ten);
+	}
+}
+
+void sapxep(SinhVien ds[], int N){
+	sort(ds, ds+N+1);
+}
+
+void in(SinhVien ds[], int N){
+	for(int i = N; i >= 1; i--){
+		cout << ds[i].msv << " " << ds[i].ten << ds[i].lop << " " << ds[i].ns << " " << fixed << setprecision(2) << ds[i].gpa << endl;
+	}
+}
+
+int main(){
+    struct SinhVien ds[50];
+    int N;
+    cin >> N;
+    nhap(ds, N);
+    sapxep(ds,N);
+    in(ds, N);
+    return 0;
+}
