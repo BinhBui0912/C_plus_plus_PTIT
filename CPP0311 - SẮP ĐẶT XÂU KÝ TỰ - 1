@@ -1,0 +1,24 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+int main(){
+	int t;
+	cin >> t;
+	while(t--){
+		string s;
+		cin >> s;
+		map<char, int> mp;
+		int maxchar = 0;
+		char kytumax;
+		for(int i = 0; i < s.size(); i++){
+			mp[s[i]]++;
+			if(mp[s[i]] > maxchar ){
+				maxchar = mp[s[i]];
+				kytumax = s[i];
+			}
+		}
+		if(s.size() - maxchar >= maxchar - 1) cout << "1" << endl;
+		else cout << "0" << endl;
+	}
+}
