@@ -1,0 +1,22 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+void ChiaDu(string n, long long m){
+	long long cnt = 0;
+	for(int i = 0; i < n.size(); i++){
+		cnt = cnt*10 + n[i] - '0';
+		cnt = cnt % m;
+	}
+	cout << cnt << endl;
+}
+
+int main(){
+	int t;
+	cin >> t;
+	while(t--){
+		string s; long long m;
+		cin >> s >> m;
+		ChiaDu(s,m);
+	}
+}
