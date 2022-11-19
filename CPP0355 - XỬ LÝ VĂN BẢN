@@ -1,0 +1,26 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+int main(){
+	string s;
+	vector<string> v;
+	while(cin >> s) v.push_back(s);
+	int len = v.size();
+	for(int i = 0; i < len; i++){
+		for(int j = 0; j < v[i].size(); j++){
+			v[i][j] = tolower(v[i][j]);
+		}
+	}
+	v[0][0] = toupper(v[0][0]);
+	for(int i = 0; i < len-1; i++){
+		if(v[i][v[i].size() - 1] == '.' || v[i][v[i].size() - 1] == '?' || v[i][v[i].size() - 1] == '!'){
+			v[i+1][0] = toupper(v[i+1][0]);
+			v[i].pop_back();
+			cout << v[i] << endl;
+		}
+		else cout << v[i] << " ";
+	}
+	if(v[len-1].back() == '.' || v[len-1].back() == '?' || v[len-1].back() == '!') v[len-1].pop_back();
+	cout << v.back();
+} 
