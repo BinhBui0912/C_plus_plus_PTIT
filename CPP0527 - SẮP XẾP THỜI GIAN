@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+struct ThoiGian{
+	long long gio, phut, giay;
+	bool operator < (const ThoiGian other){
+		return (gio*3600 + phut*60 + giay) < (other.gio*3600 + other.phut*60 + other.giay);
+	}
+};
+
+int main(){
+	int n;
+	cin >> n;
+	ThoiGian ds[n];
+	for(int i = 0; i < n; i++){
+		cin >> ds[i].gio >> ds[i].phut >> ds[i].giay;
+	}
+	sort(ds, ds+n);
+	for(int i = 0; i < n; i++){
+		cout << ds[i].gio << " " << ds[i].phut << " " << ds[i].giay << endl;
+	}
+}
+
+
+
+
+
+
+
+
+
