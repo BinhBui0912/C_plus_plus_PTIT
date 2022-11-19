@@ -1,0 +1,46 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+struct MatHang{
+	long long ma;
+	string ten;
+	string nhom;
+	double giamua;
+	double giaban;
+	bool operator < (const MatHang other){
+		return (giaban - giamua) < (other.giaban - other.giamua);
+	}
+};
+
+void Nhap(MatHang ds[], int N){
+	for(int i = 1; i <= N; i++){
+		cin.ignore();	
+		ds[i].ma = i;
+		getline(cin, ds[i].ten);
+		getline(cin, ds[i].nhom);
+		cin >> ds[i].giamua >> ds[i].giaban;
+	}
+}
+
+void sapxep(MatHang ds[], int N){
+	sort(ds, ds+N+1);
+}
+
+void in(MatHang ds[], int N){
+	for(int i = N; i >= 1; i--){
+		cout << ds[i].ma << " " << ds[i].ten << " " << ds[i].nhom << " " << fixed << setprecision(2) << ds[i].giaban - ds[i].giamua << endl;
+	}
+}
+
+int main(){
+	struct MatHang ds[50];
+	int N;
+	cin >> N;
+	Nhap(ds, N);
+	sapxep(ds, N);
+	in(ds, N);
+	return 0;
+}
+
+
