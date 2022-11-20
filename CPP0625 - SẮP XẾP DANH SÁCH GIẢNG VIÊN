@@ -1,0 +1,83 @@
+#include<bits/stdc++.h>
+#define PI 3.141592653589793238
+
+using namespace std;
+
+class GiaoVien{
+	private:
+		string ma;
+		string hoten;
+		string mon;
+		static int dem;
+	public:
+		friend istream& operator >> (istream& in, GiaoVien &a);
+		friend ostream& operator << (ostream& out, GiaoVien a);
+		string getHoTen();
+		string getMa();
+};
+
+int GiaoVien::dem = 0;
+
+string GiaoVien::getMa(){
+	return ma;
+}
+
+string GiaoVien::getHoTen(){
+	return hoten;
+}
+
+string ten(GiaoVien &a){
+	stringstream ss(a.getHoTen());
+	vector<string> v;
+	string tmp, cnt = "";
+	while(ss >> tmp ){
+		v.push_back(tmp);
+	}
+	cnt = v.back();
+	return cnt;
+}
+
+string ChuanHoa(string &s){
+	stringstream ss(s);
+	string cnt = "", tmp;
+	while(ss >> tmp){
+		cnt += toupper(tmp[0]);
+	}
+	return cnt;
+}
+
+istream& operator >> (istream& in, GiaoVien &a){
+	++a.dem;
+	a.ma = "GV" + string(2-to_string(a.dem).size(), '0') + to_string(a.dem);
+	getline(in, a.hoten);
+	getline(in, a.mon);
+	return in;
+}
+
+ostream& operator << (ostream& out, GiaoVien a){
+	out << a.ma << " "  << a.hoten << " " << ChuanHoa(a.mon) << endl;
+	return out;
+}
+
+bool cmp(GiaoVien a, GiaoVien b){
+	if(ten(a) == ten(b)) return a.getMa() < b.getMa();
+	return ten(a) < ten(b);
+}
+
+void sapxep(GiaoVien ds[], int n){
+	sort(ds, ds+n, cmp);
+}
+
+int main(){
+	GiaoVien ds[100];
+	int n; cin >> n;
+	cin.ignore();
+	for(int i = 0; i < n; i++) cin >> ds[i];
+	sapxep(ds,n);
+	for(int i = 0; i < n; i++) cout << ds[i];
+	return 0;
+}
+
+
+
+
