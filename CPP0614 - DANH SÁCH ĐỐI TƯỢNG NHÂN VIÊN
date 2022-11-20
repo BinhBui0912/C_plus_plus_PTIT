@@ -1,0 +1,42 @@
+#include<bits/stdc++.h>
+#define PI 3.141592653589793238
+
+using namespace std;
+
+class NhanVien{
+	private:
+		string ma, ten, gt, ns, dc, nk;
+		long long mst;
+		static int dem;
+	public:
+		friend istream& operator >> (istream& in, NhanVien &a);
+		friend ostream& operator << (ostream& out, NhanVien a);
+};
+
+int NhanVien::dem = 0;
+
+istream& operator >> (istream& in, NhanVien &a){
+	a.dem++;
+	a.ma = string(5-to_string(a.dem).size(), '0') + to_string(a.dem);
+	in.ignore();
+	getline(in, a.ten);
+	in >> a.gt >> a.ns;
+	in.ignore();
+	getline(in, a.dc);
+	in >> a.mst >> a.nk;
+	return in;
+}
+
+ostream& operator << (ostream& out, NhanVien a){
+	out << a.ma << " " << a.ten << " " << a.gt << " " << a.ns << " " << a.dc << " " << a.mst << " " << a.nk << endl;
+	return out;
+}
+
+int main(){
+    NhanVien ds[50];
+    int N,i;
+    cin >> N;
+    for(i=0;i<N;i++) cin >> ds[i];
+    for(i=0;i<N;i++) cout << ds[i];
+    return 0;
+}
