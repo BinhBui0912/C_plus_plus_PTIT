@@ -1,0 +1,71 @@
+#include<bits/stdc++.h>
+#define PI 3.141592653589793238
+
+using namespace std;
+
+class SinhVien{
+	private:
+		string ma, ten, lop, email;
+	public:
+		friend istream& operator >> (istream& in, SinhVien &a);
+		friend ostream& operator << (ostream& out, SinhVien a);
+		string getLop();
+		string getMa();
+};
+
+string SinhVien::getMa(){
+	return ma;
+}
+
+string SinhVien::getLop(){
+	return lop;
+}
+
+istream& operator >> (istream& in, SinhVien &a){
+	in >> a.ma;
+	in.ignore();
+	getline(in, a.ten);
+	in >> a.lop >> a.email;
+	return in;
+}
+
+ostream& operator << (ostream& out, SinhVien a){
+	out << a.ma << " " << a.ten << " " << a.lop << " " << a.email << endl;
+	return out;
+}
+
+string nganh(string &s){
+	stringstream ss(s);
+	string tmp, cnt ="";
+	while(ss >> tmp){
+		cnt = cnt + tmp[0];
+	}
+	return cnt.substr(0,2);
+}
+
+int main(){
+	SinhVien ds[1000];
+	int n;
+	cin >> n;
+	for(int i = 0; i < n; i++) cin >> ds[i];
+	int q; cin >> q;
+	cin.ignore();
+	while(q--){
+		string s;
+		getline(cin, s);
+		for(int i = 0; i < s.size(); i++){
+			s[i] = toupper(s[i]);
+		}
+		cout << "DANH SACH SINH VIEN NGANH " << s << ":" << endl;
+		for(int i = 0; i < n; i++){
+			if(nganh(s) == "CN" || nganh(s) == "AT"){
+				if(ds[i].getLop()[0] != 'E' && ds[i].getMa().substr(5,2) == nganh(s)) cout << ds[i];
+			}
+			else{
+				if(ds[i].getMa().substr(5,2) == nganh(s)) cout << ds[i];
+			}
+		}
+	}
+}
+
+
