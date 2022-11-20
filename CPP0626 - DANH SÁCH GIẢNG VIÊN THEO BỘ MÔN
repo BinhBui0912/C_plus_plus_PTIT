@@ -1,0 +1,70 @@
+#include<bits/stdc++.h>
+#define PI 3.141592653589793238
+
+using namespace std;
+
+class GiaoVien{
+	private:
+		string ma;
+		string hoten;
+		string mon;
+		static int dem;
+	public:
+		friend istream& operator >> (istream& in, GiaoVien &a);
+		friend ostream& operator << (ostream& out, GiaoVien a);
+		string getMon();
+};
+
+string GiaoVien::getMon(){
+	return mon;
+}
+
+int GiaoVien::dem = 0;
+
+void ChuanHoa(string &s){
+	stringstream ss(s);
+	string cnt = "", tmp;
+	while(ss >> tmp){
+		cnt += toupper(tmp[0]);
+	}
+	s = cnt;
+}
+
+istream& operator >> (istream& in, GiaoVien &a){
+	++a.dem;
+	a.ma = "GV" + string(2-to_string(a.dem).size(), '0') + to_string(a.dem);
+	getline(in, a.hoten);
+	getline(in, a.mon);
+	ChuanHoa(a.mon);
+	return in;
+}
+
+ostream& operator << (ostream& out, GiaoVien a){
+	out << a.ma << " "  << a.hoten << " " << a.mon << endl;
+	return out;
+}
+
+
+int main(){
+	GiaoVien ds[100];
+	int n; cin >> n;
+	cin.ignore();
+	for(int i = 0; i < n; i++) cin >> ds[i];
+	int q;
+	cin >> q;
+	cin.ignore();
+	while(q--){
+		string s;
+		getline(cin,s);
+		ChuanHoa(s);
+		cout << "DANH SACH GIANG VIEN BO MON " << s << ":" << endl;
+		for(int i = 0; i < n; i++){
+			if(ds[i].getMon() == s) cout << ds[i];
+		}
+	}
+	return 0;
+}
+
+
+
+
